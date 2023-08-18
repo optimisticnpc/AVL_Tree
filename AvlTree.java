@@ -39,6 +39,10 @@ public class AvlTree {
         }
       }
     }
+
+
+
+
   }
 
   public Node getRoot() {
@@ -76,7 +80,6 @@ public class AvlTree {
       } else {
         grandparent.setRight(node);
       }
-      node.setParent(grandparent);
     } else {
       // If grandparent does not exist, node is the new root
       node.setParent(null);
@@ -93,12 +96,10 @@ public class AvlTree {
       // Attach parent to node's right
       // Update parent field in former parent
       node.setRight(parent);
-      parent.setParent(node);
 
       // Attach node's right to former parent's left
       if (nodeToTransfer != null) {
         parent.setLeft(nodeToTransfer);
-        nodeToTransfer.setParent(parent);
       } else {
         parent.setLeft(null);
       }
@@ -110,12 +111,10 @@ public class AvlTree {
       // Attach parent to node's left
       // Update parent field in former parent
       node.setLeft(parent);
-      parent.setParent(node);
 
       // Attach node's left to former parent's right
       if (nodeToTransfer != null) {
         parent.setRight(nodeToTransfer);
-        nodeToTransfer.setParent(parent);
       } else {
         parent.setRight(null);
       }
@@ -132,7 +131,7 @@ public class AvlTree {
           return null;
         }
 
-        // If we find that the key is already in the tree
+        // If we find the key, return the node 
         if (key == currentNode.getKey()) {
           return currentNode;
         }
@@ -140,12 +139,18 @@ public class AvlTree {
         if (key < currentNode.getKey()) {
           currentNode = currentNode.getLeft();
         }
-
         // If key greater than current node key
-        if (key > currentNode.getKey()) {
+        else if (key > currentNode.getKey()) {
           currentNode = currentNode.getRight();
         }
       }
     }
   }
+
+  public boolean contains(int key) {
+    return search(key) != null;
+  }
+
+
+  
 }
