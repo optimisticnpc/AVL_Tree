@@ -5,12 +5,12 @@ public class Node implements PrintableNode {
   private int height;
   private Node left, right;
   private Node parent;
+  private int balanceFactor;
 
 
-  Node(int k, Node p) {
+  Node(int k) {
     height = 0;
     key = k;
-    parent = p;
   }
 
   public int getKey() {
@@ -67,7 +67,11 @@ public class Node implements PrintableNode {
   }
 
 
-  public int getBalanceFactor(Node node) {
-    return node.getLeft().getHeight() - node.getRight().getHeight();
+  public int getBalanceFactor() {
+    return balanceFactor;
   }
+
+public void setBalanceFactor(int balanceFactor) {
+    this.balanceFactor = balanceFactor;
+}
 }

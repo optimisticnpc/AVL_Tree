@@ -41,19 +41,20 @@ public class TestRotate {
       tree2.add(i);
     }
 
-    TreePrinter.print(tree2.getRoot());
+    Node root2 = tree2.getRoot();
+    TreePrinter.print(root2);
     System.out.println();
     System.out.println("........................................................");
     System.out.println();
 
-    tree2.rotate(tree2.search(2));
+    tree2.rotate(tree2.search(root2, 2));
     System.out.println("Rotate with pivot " + 2);
     TreePrinter.print(tree2.getRoot());
     System.out.println();
     System.out.println("........................................................");
     System.out.println();
 
-    tree2.rotate(tree2.search(4));
+    tree2.rotate(tree2.search(root2, 4));
     System.out.println("Rotate with pivot " + 4);
     TreePrinter.print(tree2.getRoot());
     System.out.println();
