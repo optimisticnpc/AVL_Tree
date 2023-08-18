@@ -6,6 +6,8 @@ public class Node implements PrintableNode{
   private Node left, right;
   private Node parent;
 
+  // TODO: refactor so that setLeft and setRight also set the parent
+
   Node(int k, Node p) {
     height = 0;
     key = k;
