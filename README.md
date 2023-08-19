@@ -6,6 +6,7 @@ Use the TerminalInterface class to build and interact with an AVL tree through t
 
 
 Binary tree printer class:
+
 **Author:** [MightyPork](https://stackoverflow.com/users/2180189/mightypork)
 
 **Copyright:** 2015 MightyPork
