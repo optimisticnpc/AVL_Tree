@@ -15,7 +15,7 @@ public class Main {
     System.out.println("Height: " + tree.getRoot().getHeight());
     System.out.println("Contains 1,000,000: " + tree.contains(tree.getRoot(), 1000000));
 
-    for (int i = 1; i <= 100000; i++) {
+    for (int i = 500000; i <= 1000000; i++) {
       tree.remove(i);
     }
     System.out.println("Height: " + tree.getRoot().getHeight());

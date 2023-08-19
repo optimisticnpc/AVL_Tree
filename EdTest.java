@@ -8,10 +8,10 @@ public class EdTest {
       tree.add(i);
       tree.add(-i);
     }
-    // for (int i = 0; i < n; i++) {
-    //   tree.contains(i - 1);
-    //   tree.contains(-i + 1);
-    // }
+    for (int i = 0; i < n; i++) {
+      tree.contains(i - 1);
+      tree.contains(-i + 1);
+    }
   }
 
 

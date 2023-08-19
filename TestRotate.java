@@ -37,7 +37,7 @@ public class TestRotate {
 
     AvlTree tree2 = new AvlTree();
 
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i <= 15; i++) {
       tree2.add(i);
     }
 
