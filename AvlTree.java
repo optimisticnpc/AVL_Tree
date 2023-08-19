@@ -1,8 +1,6 @@
-import algs.TreePrinter;
-
 public class AvlTree {
-  // Add, update and balance function based of the
-  // insert function in this video: https://www.youtube.com/watch?v=1QSYxIKXXP4
+  // Add, update and balance function based of the functions in
+  // in this video (with modifcations): https://www.youtube.com/watch?v=1QSYxIKXXP4
 
   Node root;
 
@@ -116,8 +114,6 @@ public class AvlTree {
       this.root = node;
     }
 
-    // TODO: Check all fields are updated
-
     if (isNodeLeft) {
       // CASE 1: Node is left of parent
       // Get the node's right child to transfer later
@@ -150,7 +146,6 @@ public class AvlTree {
       }
     }
 
-    // TODO: check if I need all of these
     update(parent); // Update the (former) parent first because it is lower
     update(node);
     if (grandparent != null) {
@@ -186,7 +181,89 @@ public class AvlTree {
     }
   }
 
+  public boolean contains(int key) {
+    return search(this.root, key) != null;
+  }
+
   public boolean contains(Node root, int key) {
     return search(root, key) != null;
+  }
+
+  public void remove(int key) {
+    Node node = search(root, key);
+    // If node doesn't exist return
+    if (node == null) {
+      return;
+    }
+
+    // If node has 0 or 1 children
+    if (node.getLeft() == null || node.getRight() == null) {
+      simpleRemove(node);
+    } else {
+      // If node has 2 children
+      // In the right subtree, find the node with the smallest key
+      Node currentNode = node.getRight();
+      while (currentNode.getLeft() != null) {
+        currentNode = currentNode.getLeft();
+      }
+      // Replace the key of the node to be removed with the
+      // key of the smallest node in the subtree
+      node.setKey(currentNode.getKey());
+      // Remove the smallest node in the subtree
+      simpleRemove(currentNode);
+    }
+  }
+
+  public void simpleRemove(Node node) {
+    Node parent = node.getParent();
+    // Node is root
+    if (parent == null) {
+      // If node has no children
+      if (node.getLeft() == null && node.getRight() == null) {
+        root = null;
+      }
+      // If node has one child
+      else if (node.getLeft() != null && node.getRight() == null) {
+        root = node.getLeft();
+        node.getLeft().setParent(null);
+      } else if (node.getLeft() == null && node.getRight() != null) {
+        root = node.getRight();
+        node.getRight().setParent(null);
+      }
+      return;
+    }
+
+    // Case 1: No descendants
+    if (node.getLeft() == null && node.getRight() == null) {
+      replaceNodeWith(parent, node, null);
+    }
+
+    // Case 2: One Child
+    // Has left child
+    if (node.getLeft() != null && node.getRight() == null) {
+      Node leftChild = node.getLeft();
+      replaceNodeWith(parent, node, leftChild);
+    }
+
+    // Has right child
+    if (node.getLeft() == null && node.getRight() != null) {
+      Node rightChild = node.getRight();
+      replaceNodeWith(parent, node, rightChild);
+    }
+
+    Node currentNode = parent;
+    while (currentNode != null) {
+      update(currentNode);
+      balance(currentNode);
+      currentNode = currentNode.getParent();
+    }
+  }
+
+  private void replaceNodeWith(Node parent, Node node, Node replacement) {
+    if (parent.getLeft() == node) {
+      parent.setLeft(replacement);
+    } else {
+      parent.setRight(replacement);
+    }
   }
 }
