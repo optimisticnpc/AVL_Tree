@@ -30,7 +30,7 @@ public class TerminalInterface {
         String choice = scanner.nextLine();
         // If invalid input, ask again
         while (!choice.matches("[aArRqQ]")) {
-          System.out.println("Please enter a valid choice:");
+          System.out.println("Please enter a valid choice (a, r or q):");
           choice = scanner.nextLine();
         }
 
