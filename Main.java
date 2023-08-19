@@ -10,13 +10,18 @@ public class Main {
     //   TreePrinter.print(tree.getRoot());
     // }
 
-    for (int i = 1; i <= 15; i++) {
+    for (int i = 1; i <= 1000000; i++) {
       tree.add(i);
     }
 
     System.out.println("Height: " + tree.getRoot().getHeight());
-    System.out.println(tree.contains(tree.getRoot(), 1000000));
+    System.out.println("Contains 1,000,000: " + tree.contains(tree.getRoot(), 1000000));
 
+    for (int i = 1; i <= 100000; i++) {
+      tree.remove(i);
+    }
+    System.out.println("Height: " + tree.getRoot().getHeight());
+    System.out.println("Contains 1,000,000: " + tree.contains(tree.getRoot(), 1000000));
 
 
   }
